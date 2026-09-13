@@ -1,0 +1,20 @@
+{
+  "name": "sony-webusb-app-installer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "用 Chrome WebUSB 复刻索尼 App Installer 的纯静态页面：把 apk 装进相机（PlayMemories Camera Apps）",
+  "//": "页面本身**不需要任何 npm 依赖** —— src/ 就是 ES 模块，浏览器直接跑（dist/index.html 在没有构建产物时会回退到源码模块）。下面的依赖只为 npm run build：把 20 多个模块合成一个文件并做混淆，发布用。",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack --watch",
+    "start": "node serve.js",
+    "serve": "node serve.js"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "4.0.2",
+    "terser-webpack-plugin": "5.3.6",
+    "webpack": "5.76.0",
+    "webpack-cli": "4.10.0",
+    "webpack-obfuscator": "3.5.0"
+  }
+}

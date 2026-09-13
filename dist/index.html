@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sony PMCA Installer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="hd-row">
+        <h1>Sony PMCA Installer</h1>
+        <div class="hd-actions">
+          <button id="repick-btn" class="secondary tiny"
+                  data-i18n-title="title.repick"
+                  data-i18n="btn.repick"
+                  title="重新选一台相机，并清空本页已选的数据与日志">换一台设备 / 重置</button>
+          <select id="lang-select" class="lang-select" title="Language / 界面语言"
+                  aria-label="Language / 界面语言">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+      </div>
+      <p class="sub" data-i18n-html="sub1">
+        用 Chrome 的 <b>WebUSB</b> 复刻索尼官方的 <i>App Installer</i> 流程，把 apk 装进相机。
+      </p>
+    </header>
+
+    <div id="usb-warn" class="banner" data-i18n-html="usb-warn">
+      这个浏览器没有 <code>navigator.usb</code>。请改用 <b>Chrome</b> 或 <b>Edge</b>
+      （桌面版），并用 <code>https://</code> 或 <code>http://localhost</code> 打开本页
+      （WebUSB 要求安全上下文）。
+    </div>
+
+    <main>
+      <section class="steps">
+        <article class="card">
+          <h2><span class="num">①</span> <span data-i18n="step1.title">将相机 USB 设置为 MTP 模式后连接 USB</span></h2>
+          <button id="step1-btn" data-i18n="btn.step1">切换到安装模式</button>
+        </article>
+
+        <article class="card">
+          <h2><span class="num">②</span> <span data-i18n="step2.title">选择 apk 并安装</span></h2>
+          <div id="apk-drop" class="drop">
+            <p data-i18n-html="apk.drop">把 <code>.apk</code> 拖到这里，或</p>
+            <button id="apk-pick-btn" class="secondary" data-i18n="btn.pick">选择文件…</button>
+            <input id="apk-file" type="file" accept=".apk,application/vnd.android.package-archive" hidden />
+          </div>
+          <div id="apk-info" class="kv"></div>
+          <button id="step2-install" data-i18n="btn.install" disabled>安装</button>
+        </article>
+
+        <article class="card">
+          <h2><span class="num">③</span> <span data-i18n="step3.title">诊断</span></h2>
+          <button id="probe-btn" class="secondary" data-i18n="btn.probe">打印相机 DeviceInfo</button>
+          <pre id="device-info" class="pre" data-i18n="deviceinfo.none">（还没读）</pre>
+        </article>
+
+        <article class="card status-card">
+          <div id="status" class="status" data-i18n="status.ready">就绪</div>
+          <div class="progress"><div id="progress-bar"></div></div>
+          <div id="progress-text" class="progress-text"></div>
+        </article>
+      </section>
+
+      <section class="side">
+        <div class="log-head">
+          <span data-i18n="log.title">日志</span>
+          <button id="log-clear" class="tiny secondary" data-i18n="btn.clear">清空</button>
+        </div>
+        <div id="log" class="log"></div>
+      </section>
+    </main>
+
+    <script type="module">
+      await import('./app.min.js');
+    </script>
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?430c7e1717bf645acd1d592862572e30";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  </body>
+</html>
